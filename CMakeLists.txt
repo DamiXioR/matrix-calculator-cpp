@@ -34,6 +34,7 @@ set(TESTS
 
 set(SRC 
     src/testClass.cpp
+    src/matrix.cpp
 )
 
 set(FLAGS 

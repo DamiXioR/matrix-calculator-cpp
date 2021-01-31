@@ -23,13 +23,13 @@ public:
     //Row inputs
 
     std::vector<std::string> testInputOnlyDigits{
-        {"2 "},
         {"1 "},
         {"1 2 "},
         {"1 2 3 "},
         {"1 2 3 4 "},
         {"1 2 3 4 5 "},
         {"1 2 3 4 5 6 "},
+        {"1 2 3 4 5 6 7 "},
         {"1 2 3 4 5 6 7 8 "},
         {"1 2 3 4 5 6 7 8 9 "},
         {"1 2 3 4 5 6 7 8 9 10 "},
@@ -105,5 +105,35 @@ TEST_F(MatrixTest, ShouldReturnTrueOnlyWhenRowsInputConsistOnlyDigits)
     testMatrix = new Matrix(testRows10, testColumns1);
     for (auto& everyInput : testInputOnlyDigits) {
         EXPECT_TRUE(testMatrix->isInputValuesConsistsDigits(everyInput));
+    }
+}
+
+TEST_F(MatrixTest, ShouldReturnTrueWhenRowsInputIsEqualToColumnsSizeAndFalseWhenNot)
+{
+    testMatrix = new Matrix(testRows5, testColumns7);
+    unsigned numOfDigits = 1;
+
+    for (auto& everyInput : testInputOnlyDigits) {
+        if(numOfDigits == testColumns7) {
+            EXPECT_TRUE(testMatrix->isInputValuesEqualToColumnsSize((everyInput)));
+        }
+        else {
+            EXPECT_FALSE(testMatrix->isInputValuesEqualToColumnsSize((everyInput)));
+        }
+        numOfDigits++;
+    }
+    delete testMatrix;
+
+    testMatrix = new Matrix(testRows10, testColumns1);
+    numOfDigits = 1;
+    
+    for (auto& everyInput : testInputOnlyDigits) {
+        if(numOfDigits == testColumns1) {
+            EXPECT_TRUE(testMatrix->isInputValuesEqualToColumnsSize((everyInput)));
+        }
+        else {
+            EXPECT_FALSE(testMatrix->isInputValuesEqualToColumnsSize((everyInput)));
+        }
+        numOfDigits++;
     }
 }

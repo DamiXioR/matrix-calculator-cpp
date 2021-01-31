@@ -137,3 +137,41 @@ TEST_F(MatrixTest, ShouldReturnTrueWhenRowsInputIsEqualToColumnsSizeAndFalseWhen
         numOfDigits++;
     }
 }
+
+TEST_F(MatrixTest, ShouldReturnTrueWhenAllInputIsCorrect)
+{
+    testMatrix = new Matrix(testRows5, testColumns7);
+    unsigned numOfDigits = 1;
+
+    for (auto& everyInput : testInputOnlyDigits) {
+        if(numOfDigits == testColumns7) {
+            EXPECT_TRUE(testMatrix->isTemporaryRowInputCorrect((everyInput)));
+        }
+        else {
+            EXPECT_FALSE(testMatrix->isTemporaryRowInputCorrect((everyInput)));
+        }
+        numOfDigits++;
+    }
+
+    for (auto& everyInput : testInputMixedDigitsAndCharacters) {
+        EXPECT_FALSE(testMatrix->isTemporaryRowInputCorrect(everyInput));
+    }
+    delete testMatrix;
+
+    testMatrix = new Matrix(testRows10, testColumns1);
+    numOfDigits = 1;
+    
+    for (auto& everyInput : testInputOnlyDigits) {
+        if(numOfDigits == testColumns1) {
+            EXPECT_TRUE(testMatrix->isTemporaryRowInputCorrect((everyInput)));
+        }
+        else {
+            EXPECT_FALSE(testMatrix->isTemporaryRowInputCorrect((everyInput)));
+        }
+        numOfDigits++;
+    }
+
+    for (auto& everyInput : testInputMixedDigitsAndCharacters) {
+        EXPECT_FALSE(testMatrix->isTemporaryRowInputCorrect(everyInput));
+    }
+}

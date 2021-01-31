@@ -30,6 +30,7 @@ endif()
 
 set(TESTS 
     tests/main-ut.cpp
+    tests/matrix-ut.cpp
 )
 
 set(SRC 

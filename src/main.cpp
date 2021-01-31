@@ -2,7 +2,7 @@
 
 int main(){
 
-    Matrix matrix(5,10);
+    Matrix matrix(5,7);
     matrix.printMatrix();
 
     return 0;

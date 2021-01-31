@@ -2,15 +2,19 @@
 #include <algorithm>
 #include <iostream>
 
-Matrix::Matrix(unsigned rows, unsigned columns){
-    matrix_ = new std::vector<std::vector<int>>(rows);
-    std::for_each(matrix_->begin(),matrix_->end(),[columns](std::vector<int>& everyRow){
-        everyRow.resize(columns);
-    });
+Matrix::Matrix(unsigned rows, unsigned columns) : rows_(rows), columns_(columns){
+    createEmptyMatrix();
 }
 
 Matrix::~Matrix(){
     delete matrix_;
+}
+
+void Matrix::createEmptyMatrix(){
+    matrix_ = new std::vector<std::vector<int>>(rows_);
+    std::for_each(matrix_->begin(),matrix_->end(),[this](std::vector<int>& everyRow){
+        everyRow.resize(columns_);
+    });
 }
 
 void Matrix::printMatrix(){

@@ -22,7 +22,7 @@ public:
 
     //Row inputs
 
-    std::vector<std::string> testInputOnlyDigits{
+    std::vector<std::string> testStringInputOnlyDigits{
         {"1 "},
         {"1 2 "},
         {"1 2 3 "},
@@ -35,7 +35,20 @@ public:
         {"1 2 3 4 5 6 7 8 9 10 "},
         {"1 2 3 4 5 6 7 8 9 10 11"}};
 
-    std::vector<std::string> testInputMixedDigitsAndCharacters{
+    std::vector<std::vector<int>> digitsEqualToStringInputOnlyDigits{
+        {1},
+        {1, 2},
+        {1, 2, 3},
+        {1, 2, 3, 4},
+        {1, 2, 3, 4, 5},
+        {1, 2, 3, 4, 5, 6},
+        {1, 2, 3, 4, 5, 6, 7},
+        {1, 2, 3, 4, 5, 6, 7, 8},
+        {1, 2, 3, 4, 5, 6, 7, 8, 9},
+        {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+        {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11}};
+
+    std::vector<std::string> tesyStringInputMixedDigitsAndCharacters{
         {"x "},
         {"1c "},
         {"a1 "},
@@ -85,25 +98,25 @@ TEST_F(MatrixTest, ShouldReturnValueOfRowsOrColumns)
 TEST_F(MatrixTest, ShouldReturnTrueOnlyWhenRowsInputConsistOnlyDigits)
 {
     testMatrix = new Matrix(testRows5, testColumns7);
-    for (auto& everyInput : testInputMixedDigitsAndCharacters) {
+    for (auto& everyInput : tesyStringInputMixedDigitsAndCharacters) {
         EXPECT_FALSE(testMatrix->isInputValuesConsistsDigits(everyInput));
     }
     delete testMatrix;
 
     testMatrix = new Matrix(testRows10, testColumns1);
-    for (auto& everyInput : testInputMixedDigitsAndCharacters) {
+    for (auto& everyInput : tesyStringInputMixedDigitsAndCharacters) {
         EXPECT_FALSE(testMatrix->isInputValuesConsistsDigits(everyInput));
     }
     delete testMatrix;
 
     testMatrix = new Matrix(testRows5, testColumns7);
-    for (auto& everyInput : testInputOnlyDigits) {
+    for (auto& everyInput : testStringInputOnlyDigits) {
         EXPECT_TRUE(testMatrix->isInputValuesConsistsDigits(everyInput));
     }
     delete testMatrix;
 
     testMatrix = new Matrix(testRows10, testColumns1);
-    for (auto& everyInput : testInputOnlyDigits) {
+    for (auto& everyInput : testStringInputOnlyDigits) {
         EXPECT_TRUE(testMatrix->isInputValuesConsistsDigits(everyInput));
     }
 }
@@ -113,8 +126,8 @@ TEST_F(MatrixTest, ShouldReturnTrueWhenRowsInputIsEqualToColumnsSizeAndFalseWhen
     testMatrix = new Matrix(testRows5, testColumns7);
     unsigned numOfDigits = 1;
 
-    for (auto& everyInput : testInputOnlyDigits) {
-        if(numOfDigits == testColumns7) {
+    for (auto& everyInput : testStringInputOnlyDigits) {
+        if (numOfDigits == testColumns7) {
             EXPECT_TRUE(testMatrix->isInputValuesEqualToColumnsSize((everyInput)));
         }
         else {
@@ -126,9 +139,9 @@ TEST_F(MatrixTest, ShouldReturnTrueWhenRowsInputIsEqualToColumnsSizeAndFalseWhen
 
     testMatrix = new Matrix(testRows10, testColumns1);
     numOfDigits = 1;
-    
-    for (auto& everyInput : testInputOnlyDigits) {
-        if(numOfDigits == testColumns1) {
+
+    for (auto& everyInput : testStringInputOnlyDigits) {
+        if (numOfDigits == testColumns1) {
             EXPECT_TRUE(testMatrix->isInputValuesEqualToColumnsSize((everyInput)));
         }
         else {
@@ -143,8 +156,8 @@ TEST_F(MatrixTest, ShouldReturnTrueWhenAllInputIsCorrect)
     testMatrix = new Matrix(testRows5, testColumns7);
     unsigned numOfDigits = 1;
 
-    for (auto& everyInput : testInputOnlyDigits) {
-        if(numOfDigits == testColumns7) {
+    for (auto& everyInput : testStringInputOnlyDigits) {
+        if (numOfDigits == testColumns7) {
             EXPECT_TRUE(testMatrix->isTemporaryRowInputCorrect((everyInput)));
         }
         else {
@@ -153,16 +166,16 @@ TEST_F(MatrixTest, ShouldReturnTrueWhenAllInputIsCorrect)
         numOfDigits++;
     }
 
-    for (auto& everyInput : testInputMixedDigitsAndCharacters) {
+    for (auto& everyInput : tesyStringInputMixedDigitsAndCharacters) {
         EXPECT_FALSE(testMatrix->isTemporaryRowInputCorrect(everyInput));
     }
     delete testMatrix;
 
     testMatrix = new Matrix(testRows10, testColumns1);
     numOfDigits = 1;
-    
-    for (auto& everyInput : testInputOnlyDigits) {
-        if(numOfDigits == testColumns1) {
+
+    for (auto& everyInput : testStringInputOnlyDigits) {
+        if (numOfDigits == testColumns1) {
             EXPECT_TRUE(testMatrix->isTemporaryRowInputCorrect((everyInput)));
         }
         else {
@@ -171,7 +184,19 @@ TEST_F(MatrixTest, ShouldReturnTrueWhenAllInputIsCorrect)
         numOfDigits++;
     }
 
-    for (auto& everyInput : testInputMixedDigitsAndCharacters) {
+    for (auto& everyInput : tesyStringInputMixedDigitsAndCharacters) {
         EXPECT_FALSE(testMatrix->isTemporaryRowInputCorrect(everyInput));
+    }
+}
+
+TEST_F(MatrixTest, ShouldReturnVectorOfIntsFromTemporaryRowInput)
+{
+    testMatrix = new Matrix(testRows5, testColumns7);
+    std::vector<int> testVectorOfInts;
+    unsigned counter = 0;
+    for (auto everyVectorOfInts : digitsEqualToStringInputOnlyDigits) {
+        testVectorOfInts = testMatrix->createVectorOfIntsFromTemporaryRowInput(testStringInputOnlyDigits[counter]);
+        EXPECT_EQ(testVectorOfInts, everyVectorOfInts);
+        counter++;
     }
 }

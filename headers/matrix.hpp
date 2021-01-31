@@ -9,6 +9,20 @@ public:
     void createEmptyMatrix();
     void printMatrix();
 
+    std::vector<std::vector<int>>* getMatrix() const
+    {
+        return matrix_;
+    }
+    std::size_t getRows() const
+    {
+        return rows_;
+    }
+
+    std::size_t getColumns() const
+    {
+        return columns_;
+    }
+
 private:
     std::vector<std::vector<int>>* matrix_{};
     std::size_t rows_{};

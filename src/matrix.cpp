@@ -12,13 +12,13 @@ Matrix::~Matrix(){
 
 void Matrix::createEmptyMatrix(){
     matrix_ = new std::vector<std::vector<int>>(rows_);
-    std::for_each(matrix_->begin(),matrix_->end(),[this](std::vector<int>& everyRow){
-        everyRow.resize(columns_);
+    std::for_each(getMatrix()->begin(),getMatrix()->end(),[this](std::vector<int>& everyRow){
+        everyRow.resize(getColumns());
     });
 }
 
 void Matrix::printMatrix(){
-    std::for_each(matrix_->begin(),matrix_->end(),[](std::vector<int>& everyRow){
+    std::for_each(getMatrix()->begin(),getMatrix()->end(),[](std::vector<int>& everyRow){
         std::for_each(everyRow.begin(),everyRow.end(),[](int& everyRowElement){
             std::cout << everyRowElement << " ";
         });

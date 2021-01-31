@@ -31,11 +31,12 @@ void Matrix::setMatrixValues()
 
     std::cout << "Give me an input! Your matrix has " << getRows() << " rows and " << getColumns() << " columns.\n";
 
-    while(rowsCounter <= getRows()) {
+    while (rowsCounter <= getRows()) {
         std::getline(std::cin, temporaryRow);
-        if(isTemporaryRowInputCorrect(temporaryRow)){
-        rowsCounter++;
-        } else {
+        if (isTemporaryRowInputCorrect(temporaryRow)) {
+            rowsCounter++;
+        }
+        else {
             std::cout << "Wrong input. Matrix size [" << getRows() << "x" << getColumns() << "]. Please try again!\n";
         }
     }
@@ -82,8 +83,17 @@ bool Matrix::isInputValuesConsistsDigits(std::string temporaryRow)
     return isConsistsDigit;
 }
 
-std::vector<int> Matrix::createVectorOfIntsFromTemporaryRowInput(std::string temporaryRow){
-    return {};
+std::vector<int> Matrix::createVectorOfIntsFromTemporaryRowInput(std::string temporaryRow)
+{
+    std::vector<int> digits;
+    std::stringstream contentBySpacesSeparator(temporaryRow);
+    std::string wholeDigit = "";
+
+    while (contentBySpacesSeparator >> wholeDigit) {
+        digits.emplace_back(std::stoi(wholeDigit));
+    }
+
+    return digits;
 }
 
 void Matrix::printMatrix()

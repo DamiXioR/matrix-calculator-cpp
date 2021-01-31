@@ -11,7 +11,10 @@ public:
     void setMatrixValues();
     bool isTemporaryRowInputCorrect(std::string temporaryRow);
     bool isInputValuesEqualToColumnsSize(std::string temporaryRow);
-    bool isInputValuesConsistsDigits(std::string temporaryValues);
+    bool isInputValuesConsistsDigits(std::string temporaryRow);
+
+    std::vector<int> createVectorOfIntsFromTemporaryRowInput(std::string temporaryRow);
+
     void printMatrix();
 
     std::vector<std::vector<int>>* getMatrix() const

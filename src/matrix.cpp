@@ -30,7 +30,7 @@ void Matrix::setMatrixValues()
     unsigned rowsCounter = 1;
 
     std::cout << "Give me an input! Your matrix has " << getRows() << " rows and " << getColumns() << " columns.\n";
-    
+
     while(rowsCounter <= getRows()) {
         std::getline(std::cin, temporaryRow);
         if(isTemporaryRowInputCorrect(temporaryRow)){
@@ -66,10 +66,10 @@ bool Matrix::isInputValuesEqualToColumnsSize(std::string temporaryRow)
     return isEqual;
 }
 
-bool Matrix::isInputValuesConsistsDigits(std::string temporaryValues)
+bool Matrix::isInputValuesConsistsDigits(std::string temporaryRow)
 {
     bool isConsistsDigit = true;
-    isConsistsDigit = std::all_of(temporaryValues.begin(), temporaryValues.end(), [&isConsistsDigit](char checkedCharacter) {
+    isConsistsDigit = std::all_of(temporaryRow.begin(), temporaryRow.end(), [&isConsistsDigit](char checkedCharacter) {
         bool isTrue = true;
         if (checkedCharacter == ' ') {
             isTrue = true;
@@ -80,6 +80,10 @@ bool Matrix::isInputValuesConsistsDigits(std::string temporaryValues)
         return isTrue;
     });
     return isConsistsDigit;
+}
+
+std::vector<int> createVectorOfIntsFromTemporaryRowInput(std::string temporaryRow){
+    return {};
 }
 
 void Matrix::printMatrix()

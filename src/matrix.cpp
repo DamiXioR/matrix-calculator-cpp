@@ -26,10 +26,8 @@ void Matrix::createEmptyMatrix()
 void Matrix::setMatrixValues()
 {
     std::vector<std::vector<int>> temporaryMatrix = *getMatrix();
-    std::string temporaryRow{};
+    std::string temporaryRow = "";
     std::getline(std::cin, temporaryRow);
-    std::cout << temporaryRow << "\n";
-    std::cout << std::boolalpha << isTemporaryRowInputCorrect(temporaryRow) << "\n";
 }
 
 bool Matrix::isTemporaryRowInputCorrect(std::string temporaryRow)

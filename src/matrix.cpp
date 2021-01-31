@@ -27,7 +27,18 @@ void Matrix::setMatrixValues()
 {
     std::vector<std::vector<int>> temporaryMatrix = *getMatrix();
     std::string temporaryRow = "";
-    std::getline(std::cin, temporaryRow);
+    unsigned rowsCounter = 1;
+
+    std::cout << "Give me an input! Your matrix has " << getRows() << " rows and " << getColumns() << " columns.\n";
+    
+    while(rowsCounter <= getRows()) {
+        std::getline(std::cin, temporaryRow);
+        if(isTemporaryRowInputCorrect(temporaryRow)){
+        rowsCounter++;
+        } else {
+            std::cout << "Wrong input. Matrix size [" << getRows() << "x" << getColumns() << "]. Please try again!\n";
+        }
+    }
 }
 
 bool Matrix::isTemporaryRowInputCorrect(std::string temporaryRow)

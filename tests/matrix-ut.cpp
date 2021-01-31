@@ -35,7 +35,7 @@ public:
         {"1 2 3 4 5 6 7 8 9 10 "},
         {"1 2 3 4 5 6 7 8 9 10 11"}};
 
-    std::vector<std::string> testInputMixedDigitsOrCharacters{
+    std::vector<std::string> testInputMixedDigitsAndCharacters{
         {"x "},
         {"1c "},
         {"a1 "},
@@ -85,13 +85,13 @@ TEST_F(MatrixTest, ShouldReturnValueOfRowsOrColumns)
 TEST_F(MatrixTest, ShouldReturnTrueOnlyWhenRowsInputConsistOnlyDigits)
 {
     testMatrix = new Matrix(testRows5, testColumns7);
-    for (auto& everyInput : testInputMixedDigitsOrCharacters) {
+    for (auto& everyInput : testInputMixedDigitsAndCharacters) {
         EXPECT_FALSE(testMatrix->isInputValuesConsistsDigits(everyInput));
     }
     delete testMatrix;
 
     testMatrix = new Matrix(testRows10, testColumns1);
-    for (auto& everyInput : testInputMixedDigitsOrCharacters) {
+    for (auto& everyInput : testInputMixedDigitsAndCharacters) {
         EXPECT_FALSE(testMatrix->isInputValuesConsistsDigits(everyInput));
     }
     delete testMatrix;

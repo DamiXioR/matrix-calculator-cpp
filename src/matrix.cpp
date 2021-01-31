@@ -82,7 +82,7 @@ bool Matrix::isInputValuesConsistsDigits(std::string temporaryRow)
     return isConsistsDigit;
 }
 
-std::vector<int> createVectorOfIntsFromTemporaryRowInput(std::string temporaryRow){
+std::vector<int> Matrix::createVectorOfIntsFromTemporaryRowInput(std::string temporaryRow){
     return {};
 }
 

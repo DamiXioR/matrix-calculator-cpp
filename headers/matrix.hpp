@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <string>
 
 class Matrix {
 public:
@@ -7,6 +8,10 @@ public:
     ~Matrix();
 
     void createEmptyMatrix();
+    void setMatrixValues();
+    bool isTemporaryRowInputCorrect(std::string temporaryRow);
+    bool isInputValuesEqualToColumnsSize(unsigned valuesCounter);
+    bool isInputValuesConsistsDigits(std::string temporaryValues);
     void printMatrix();
 
     std::vector<std::vector<int>>* getMatrix() const

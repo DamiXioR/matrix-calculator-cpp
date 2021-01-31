@@ -10,7 +10,7 @@ public:
     void createEmptyMatrix();
     void setMatrixValues();
     bool isTemporaryRowInputCorrect(std::string temporaryRow);
-    bool isInputValuesEqualToColumnsSize(unsigned valuesCounter);
+    bool isInputValuesEqualToColumnsSize(std::string temporaryRow);
     bool isInputValuesConsistsDigits(std::string temporaryValues);
     void printMatrix();
 

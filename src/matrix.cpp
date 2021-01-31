@@ -38,19 +38,18 @@ bool Matrix::isTemporaryRowInputCorrect(std::string temporaryRow)
     if (!(isCorrect = isInputValuesConsistsDigits(temporaryRow))) {
         return isCorrect;
     }
+    isCorrect = isInputValuesEqualToColumnsSize(temporaryRow);
+    return isCorrect;
+}
 
+bool Matrix::isInputValuesEqualToColumnsSize(std::string temporaryRow)
+{
     std::stringstream contentBySpacesSeparator(temporaryRow);
     std::string everyContent = "";
     unsigned valuesCounter = 0;
     while (contentBySpacesSeparator >> everyContent) {
         valuesCounter++;
     }
-    isCorrect = isInputValuesEqualToColumnsSize(valuesCounter);
-    return isCorrect;
-}
-
-bool Matrix::isInputValuesEqualToColumnsSize(unsigned valuesCounter)
-{
     bool isEqual = true;
     if (valuesCounter > getColumns() || valuesCounter < getColumns()) {
         isEqual = false;

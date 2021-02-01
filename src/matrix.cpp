@@ -25,15 +25,16 @@ void Matrix::createEmptyMatrix()
 
 void Matrix::setMatrixValues()
 {
-    std::vector<std::vector<int>> temporaryMatrix = *getMatrix();
+    std::vector<std::vector<int>>* temporaryMatrix = getMatrix();
     std::string temporaryRow = "";
     unsigned rowsCounter = 1;
-
+    
     std::cout << "Give me an input! Your matrix has " << getRows() << " rows and " << getColumns() << " columns.\n";
 
     while (rowsCounter <= getRows()) {
         std::getline(std::cin, temporaryRow);
         if (isTemporaryRowInputCorrect(temporaryRow)) {
+            (*temporaryMatrix)[rowsCounter-1] = createVectorOfIntsFromTemporaryRowInput(temporaryRow);
             rowsCounter++;
         }
         else {

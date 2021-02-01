@@ -48,7 +48,9 @@ bool Matrix::isTemporaryRowInputCorrect(std::string temporaryRow)
     if (!(isCorrect = isInputValuesConsistsDigits(temporaryRow))) {
         return isCorrect;
     }
-    isCorrect = isInputValuesEqualToColumnsSize(temporaryRow);
+    if (!(isCorrect = isInputValuesEqualToColumnsSize(temporaryRow))) {
+        return isCorrect;
+    }
     return isCorrect;
 }
 

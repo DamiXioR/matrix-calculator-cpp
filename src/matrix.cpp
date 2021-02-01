@@ -45,6 +45,9 @@ void Matrix::setMatrixValues()
 bool Matrix::isTemporaryRowInputCorrect(std::string temporaryRow)
 {
     bool isCorrect = true;
+    if(isCorrect = temporaryRow.empty()){
+        return !isCorrect;
+    }
     if (!(isCorrect = isInputValuesConsistsDigits(temporaryRow))) {
         return isCorrect;
     }

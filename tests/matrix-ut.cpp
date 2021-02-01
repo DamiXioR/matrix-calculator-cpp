@@ -62,6 +62,8 @@ public:
         {"1 2 3 a5g4 5 6 7 8 9 10 "},
         {"1!@# 2 3 4 5 6 7 8 9 10 11"},
         {"                    1 2 3 4 5 @$!"}};
+
+        std::string emptyRow = "         ";
 };
 
 // IMPORTANT! testMatrix freed in MatrixTest dtor, you haven't delete it at the end of every test case
@@ -169,6 +171,10 @@ TEST_F(MatrixTest, ShouldReturnTrueWhenAllInputIsCorrect)
     for (auto& everyInput : tesyStringInputMixedDigitsAndCharacters) {
         EXPECT_FALSE(testMatrix->isTemporaryRowInputCorrect(everyInput));
     }
+    
+    //when row is empty
+    EXPECT_FALSE(testMatrix->isTemporaryRowInputCorrect(emptyRow));
+
     delete testMatrix;
 
     testMatrix = new Matrix(testRows10, testColumns1);
@@ -187,6 +193,9 @@ TEST_F(MatrixTest, ShouldReturnTrueWhenAllInputIsCorrect)
     for (auto& everyInput : tesyStringInputMixedDigitsAndCharacters) {
         EXPECT_FALSE(testMatrix->isTemporaryRowInputCorrect(everyInput));
     }
+
+    //when row is empty
+    EXPECT_FALSE(testMatrix->isTemporaryRowInputCorrect(emptyRow));
 }
 
 TEST_F(MatrixTest, ShouldReturnVectorOfIntsFromTemporaryRowInput)

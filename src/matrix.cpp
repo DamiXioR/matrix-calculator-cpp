@@ -28,13 +28,13 @@ void Matrix::setMatrixValues()
     std::vector<std::vector<int>>* temporaryMatrix = getMatrix();
     std::string temporaryRow = "";
     unsigned rowsCounter = 1;
-    
+
     std::cout << "Give me an input! Your matrix has " << getRows() << " rows and " << getColumns() << " columns.\n";
 
     while (rowsCounter <= getRows()) {
         std::getline(std::cin, temporaryRow);
         if (isTemporaryRowInputCorrect(temporaryRow)) {
-            (*temporaryMatrix)[rowsCounter-1] = createVectorOfIntsFromTemporaryRowInput(temporaryRow);
+            (*temporaryMatrix)[rowsCounter - 1] = createVectorOfIntsFromTemporaryRowInput(temporaryRow);
             rowsCounter++;
         }
         else {
@@ -46,7 +46,7 @@ void Matrix::setMatrixValues()
 bool Matrix::isTemporaryRowInputCorrect(std::string temporaryRow)
 {
     bool isCorrect = true;
-    if(isCorrect = temporaryRow.empty()){
+    if (isCorrect = temporaryRow.empty()) {
         return !isCorrect;
     }
     if (!(isCorrect = isInputValuesConsistsDigits(temporaryRow))) {
@@ -78,7 +78,7 @@ bool Matrix::isInputValuesConsistsDigits(std::string temporaryRow)
     bool isConsistsDigit = true;
     isConsistsDigit = std::all_of(temporaryRow.begin(), temporaryRow.end(), [&isConsistsDigit](char checkedCharacter) {
         bool isTrue = true;
-        if (checkedCharacter == ' ') {
+        if ((checkedCharacter == ' ') || (checkedCharacter == '-')) {
             isTrue = true;
         }
         else {

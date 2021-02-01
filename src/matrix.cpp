@@ -1,6 +1,8 @@
 #include "matrix.hpp"
+
 #include <algorithm>
 #include <cctype>
+#include <iomanip>
 #include <iostream>
 #include <sstream>
 
@@ -106,7 +108,7 @@ void Matrix::printMatrix()
 {
     std::for_each(getMatrix()->begin(), getMatrix()->end(), [](std::vector<int>& everyRow) {
         std::for_each(everyRow.begin(), everyRow.end(), [](int& everyRowElement) {
-            std::cout << everyRowElement << " ";
+            std::cout << std::right << std::setw(10)  << everyRowElement << "| ";
         });
         std::cout << "\n";
     });

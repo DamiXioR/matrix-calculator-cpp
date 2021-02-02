@@ -31,11 +31,13 @@ endif()
 set(TESTS 
     tests/main-ut.cpp
     tests/matrix-ut.cpp
+    tests/matrixManager-ut.cpp
 )
 
 set(SRC 
     src/testClass.cpp
     src/matrix.cpp
+    src/matrixManager.cpp
 )
 
 set(FLAGS 

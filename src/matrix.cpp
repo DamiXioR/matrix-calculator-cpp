@@ -29,14 +29,14 @@ void Matrix::setMatrixValues()
 {
     std::vector<std::vector<int>>* temporaryMatrix = getMatrix();
     std::string temporaryRow = "";
-    unsigned rowsCounter = 1;
+    unsigned rowsCounter = 0;
 
     std::cout << "Give me an input! Your matrix has " << getRows() << " rows and " << getColumns() << " columns.\n";
 
-    while (rowsCounter <= getRows()) {
+    while (rowsCounter < getRows()) {
         std::getline(std::cin, temporaryRow);
         if (isTemporaryRowInputCorrect(temporaryRow)) {
-            (*temporaryMatrix)[rowsCounter - 1] = createVectorOfIntsFromTemporaryRowInput(temporaryRow);
+            (*temporaryMatrix)[rowsCounter] = createVectorOfIntsFromTemporaryRowInput(temporaryRow);
             rowsCounter++;
         }
         else {

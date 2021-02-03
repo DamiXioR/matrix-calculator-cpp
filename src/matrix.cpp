@@ -19,15 +19,15 @@ Matrix::~Matrix()
 
 void Matrix::createEmptyMatrix()
 {
-    matrix_ = new std::vector<std::vector<int>>(rows_);
-    std::for_each(getMatrix()->begin(), getMatrix()->end(), [this](std::vector<int>& everyRow) {
+    matrix_ = new std::vector<std::vector<double>>(rows_);
+    std::for_each(getMatrix()->begin(), getMatrix()->end(), [this](std::vector<double>& everyRow) {
         everyRow.resize(getColumns());
     });
 }
 
 void Matrix::setMatrixValues()
 {
-    std::vector<std::vector<int>>* temporaryMatrix = getMatrix();
+    std::vector<std::vector<double>>* temporaryMatrix = getMatrix();
     std::string temporaryRow = "";
     unsigned rowsCounter = 0;
 
@@ -91,9 +91,9 @@ bool Matrix::isInputValuesConsistsDigits(std::string temporaryRow)
     return isConsistsDigit;
 }
 
-std::vector<int> Matrix::createVectorOfIntsFromTemporaryRowInput(std::string temporaryRow)
+std::vector<double> Matrix::createVectorOfIntsFromTemporaryRowInput(std::string temporaryRow)
 {
-    std::vector<int> digits;
+    std::vector<double> digits;
     std::stringstream contentBySpacesSeparator(temporaryRow);
     std::string wholeDigit = "";
 
@@ -106,9 +106,9 @@ std::vector<int> Matrix::createVectorOfIntsFromTemporaryRowInput(std::string tem
 
 void Matrix::printMatrix()
 {
-    std::for_each(getMatrix()->begin(), getMatrix()->end(), [](std::vector<int>& everyRow) {
-        std::for_each(everyRow.begin(), everyRow.end(), [](int& everyRowElement) {
-            std::cout << std::right << std::setw(10)  << everyRowElement << "| ";
+    std::for_each(getMatrix()->begin(), getMatrix()->end(), [](std::vector<double>& everyRow) {
+        std::for_each(everyRow.begin(), everyRow.end(), [](double everyRowElement) {
+            std::cout << std::right << std::setw(10) << everyRowElement << "| ";
         });
         std::cout << "\n";
     });

@@ -35,7 +35,7 @@ public:
         {"1 2 3 4 5 6 7 8 9 10 "},
         {"1 2 3 4 5 6 7 8 9 10 11"}};
 
-    std::vector<std::vector<int>> digitsEqualToStringInputOnlyDigits{
+    std::vector<std::vector<double>> digitsEqualToStringInputOnlyDigits{
         {1},
         {1, -2},
         {1, 2, 3},
@@ -63,7 +63,7 @@ public:
         {"1!@# 2 3 4 5 6 7 8 9 10 11"},
         {"                    1 2 3 4 5 @$!"}};
 
-        std::string emptyRow = "         ";
+    std::string emptyRow = "         ";
 };
 
 // IMPORTANT! testMatrix freed in MatrixTest dtor, you haven't delete it at the end of every test case
@@ -171,7 +171,7 @@ TEST_F(MatrixTest, ShouldReturnTrueWhenAllInputIsCorrect)
     for (auto& everyInput : tesyStringInputMixedDigitsAndCharacters) {
         EXPECT_FALSE(testMatrix->isTemporaryRowInputCorrect(everyInput));
     }
-    
+
     //when row is empty
     EXPECT_FALSE(testMatrix->isTemporaryRowInputCorrect(emptyRow));
 
@@ -201,7 +201,7 @@ TEST_F(MatrixTest, ShouldReturnTrueWhenAllInputIsCorrect)
 TEST_F(MatrixTest, ShouldReturnVectorOfIntsFromTemporaryRowInput)
 {
     testMatrix = new Matrix(testRows5, testColumns7);
-    std::vector<int> testVectorOfInts;
+    std::vector<double> testVectorOfInts;
     unsigned counter = 0;
     for (auto everyVectorOfInts : digitsEqualToStringInputOnlyDigits) {
         testVectorOfInts = testMatrix->createVectorOfIntsFromTemporaryRowInput(testStringInputOnlyDigits[counter]);

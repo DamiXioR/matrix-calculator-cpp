@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "matrixManager.hpp"
+#include "matrix.hpp"
 
 class MatrixManagerTest : public ::testing::Test {
 public:

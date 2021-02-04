@@ -5,6 +5,8 @@
 class Matrix {
 public:
     Matrix(unsigned rows = 0, unsigned columns = 0);
+    Matrix(const Matrix& anotherMatrix);
+    Matrix& operator=(Matrix& anotherMatrix);
     ~Matrix();
 
     void createEmptyMatrix();

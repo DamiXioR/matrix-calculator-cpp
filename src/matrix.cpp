@@ -12,6 +12,23 @@ Matrix::Matrix(unsigned rows, unsigned columns)
     createEmptyMatrix();
 }
 
+Matrix::Matrix(const Matrix& anotherMatrix)
+{
+    rows_ = anotherMatrix.getRows();
+    columns_ = anotherMatrix.getColumns();
+    matrix_ = new std::vector<std::vector<double>>(rows_);
+    *matrix_ = *(anotherMatrix.getMatrix());
+}
+
+Matrix& Matrix::operator=(Matrix& anotherMatrix)
+{
+    rows_ = anotherMatrix.getRows();
+    columns_ = anotherMatrix.getColumns();
+    matrix_ = new std::vector<std::vector<double>>(rows_);
+    *matrix_ = *(anotherMatrix.getMatrix());
+    return *this;
+}
+
 Matrix::~Matrix()
 {
     delete matrix_;

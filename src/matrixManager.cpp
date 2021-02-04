@@ -2,14 +2,22 @@
 
 #include <algorithm>
 
+MatrixManager::MatrixManager(){
+    matrixHolder_ = new std::map<char, Matrix>();
+};
+
+MatrixManager::~MatrixManager(){
+    delete matrixHolder_;
+};
+
 Matrix MatrixManager::addTwoMatrixes(char firstMatrixKey, char secondMatrixKey)
 {
     Matrix result = Matrix();
-    if (getMatrixHolder().size() > 1) {
-        auto firstMatrixIterator = getMatrixHolder().find(firstMatrixKey);
-        auto secondMatrixIterator = getMatrixHolder().find(secondMatrixKey);
+    if (getMatrixHolder()->size() > 1) {
+        auto firstMatrixIterator = getMatrixHolder()->find(firstMatrixKey);
+        auto secondMatrixIterator = getMatrixHolder()->find(secondMatrixKey);
 
-        if (firstMatrixIterator != getMatrixHolder().end() && secondMatrixIterator != getMatrixHolder().end()) {
+        if (firstMatrixIterator != getMatrixHolder()->end() && secondMatrixIterator != getMatrixHolder()->end()) {
             std::vector<std::vector<double>> firstMatrix = *(firstMatrixIterator->second.getMatrix());
             std::vector<std::vector<double>> secondMatrix = *(secondMatrixIterator->second.getMatrix());
 

@@ -2,13 +2,20 @@
 
 #include <algorithm>
 
-MatrixManager::MatrixManager(){
+MatrixManager::MatrixManager()
+{
     matrixHolder_ = new std::map<char, Matrix>();
 };
 
-MatrixManager::~MatrixManager(){
+MatrixManager::~MatrixManager()
+{
     delete matrixHolder_;
 };
+
+Matrix MatrixManager::addNewMatrix(Matrix newMatrix)
+{
+    return Matrix{};
+}
 
 Matrix MatrixManager::addTwoMatrixes(char firstMatrixKey, char secondMatrixKey)
 {

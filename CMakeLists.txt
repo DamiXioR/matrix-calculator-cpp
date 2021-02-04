@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16.3)
 
 project(Matrix VERSION 1.0)
 
-set(CMAKE_CXX_STANDARD_20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_STANDARD_REQUIRED True)
 
 # GTEST MUST HAVE

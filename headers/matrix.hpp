@@ -4,7 +4,7 @@
 
 class Matrix {
 public:
-    Matrix(unsigned rows, unsigned columns);
+    Matrix(unsigned rows = 0, unsigned columns = 0);
     ~Matrix();
 
     void createEmptyMatrix();

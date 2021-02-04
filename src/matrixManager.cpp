@@ -12,9 +12,10 @@ MatrixManager::~MatrixManager()
     delete matrixHolder_;
 };
 
-Matrix MatrixManager::addNewMatrix(Matrix newMatrix)
+bool MatrixManager::addNewMatrix(char key, Matrix newMatrix)
 {
-    return Matrix{};
+    auto checkIfInserted = matrixHolder_->try_emplace(key, newMatrix);
+    return checkIfInserted.second;
 }
 
 Matrix MatrixManager::addTwoMatrixes(char firstMatrixKey, char secondMatrixKey)

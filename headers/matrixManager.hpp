@@ -8,7 +8,7 @@ class MatrixManager {
 public:
     MatrixManager();
     ~MatrixManager();
-    Matrix addNewMatrix(Matrix newMatrix);
+    bool addNewMatrix(char key, Matrix newMatrix);
     Matrix addTwoMatrixes(char firstMatrixKey, char secondMatrixKey);
     std::map<char, Matrix>* getMatrixHolder() const
     {

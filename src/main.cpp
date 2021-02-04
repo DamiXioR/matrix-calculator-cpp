@@ -1,4 +1,4 @@
-#include "matrix.hpp"
+#include "allHeaders.hpp"
 
 int main(){
 
@@ -6,6 +6,10 @@ int main(){
     matrix.printMatrix();
     matrix.setMatrixValues();
     matrix.printMatrix();
+    
+    MatrixManager mManager = MatrixManager{};
+    mManager.addTwoMatrixes('a','b');
+
     
     return 0;
 }

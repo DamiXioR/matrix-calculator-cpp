@@ -12,9 +12,9 @@ MatrixManager::~MatrixManager()
     delete matrixHolder_;
 };
 
-bool MatrixManager::addNewMatrix(char key, Matrix newMatrix)
+bool MatrixManager::addNewMatrix(char key, Matrix* newMatrix)
 {
-    auto checkIfInserted = matrixHolder_->emplace(key, newMatrix);
+    auto checkIfInserted = matrixHolder_->emplace(key, *newMatrix);
     return checkIfInserted.second;
 }
 

@@ -48,8 +48,8 @@ TEST_F(MatrixManagerTest, ShouldAddNewMatrixToMatrixHolderWhenKeyNotExists)
     char a = 'a';
     char b = 'b';
 
-    EXPECT_TRUE(matrixManager->addNewMatrix(a, *firstMatrix));
-    EXPECT_TRUE(matrixManager->addNewMatrix(b, *secondMatrix));
+    EXPECT_TRUE(matrixManager->addNewMatrix(a, firstMatrix));
+    EXPECT_TRUE(matrixManager->addNewMatrix(b, secondMatrix));
 }
 
 TEST_F(MatrixManagerTest, ShouldAddTwoMatrixesAndReturnMatrixConsistSum)

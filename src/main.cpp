@@ -13,8 +13,8 @@ int main(){
     matrixB->printMatrix();
     
     MatrixManager* mManager = new MatrixManager();
-    mManager->addNewMatrix('a', *matrix);
-    mManager->addNewMatrix('b',*matrixB);
+    mManager->addNewMatrix('a', matrix);
+    mManager->addNewMatrix('b',matrixB);
 
     Matrix* matrixC = mManager->addTwoMatrixes('a','b');
     matrixC->printMatrix();

@@ -14,18 +14,18 @@ Matrix::Matrix(unsigned rows, unsigned columns)
 
 Matrix::Matrix(const Matrix& anotherMatrix)
 {
-    rows_ = anotherMatrix.getRows();
-    columns_ = anotherMatrix.getColumns();
+    rows_ = anotherMatrix.rows_;
+    columns_ = anotherMatrix.columns_;
     matrix_ = new std::vector<std::vector<double>>(rows_);
-    *matrix_ = *(anotherMatrix.getMatrix());
+    *matrix_ = *(anotherMatrix.matrix_);
 }
 
 Matrix& Matrix::operator=(Matrix& anotherMatrix)
 {
-    rows_ = anotherMatrix.getRows();
-    columns_ = anotherMatrix.getColumns();
+    rows_ = anotherMatrix.rows_;
+    columns_ = anotherMatrix.columns_;
     matrix_ = new std::vector<std::vector<double>>(rows_);
-    *matrix_ = *(anotherMatrix.getMatrix());
+    *matrix_ = *(anotherMatrix.matrix_);
     return *this;
 }
 
@@ -37,27 +37,27 @@ Matrix::~Matrix()
 void Matrix::createEmptyMatrix()
 {
     matrix_ = new std::vector<std::vector<double>>(rows_);
-    std::for_each(getMatrix()->begin(), getMatrix()->end(), [this](std::vector<double>& everyRow) {
-        everyRow.resize(getColumns());
+    std::for_each(matrix_->begin(), matrix_->end(), [this](std::vector<double>& everyRow) {
+        everyRow.resize(columns_);
     });
 }
 
 void Matrix::setMatrixValues()
 {
-    std::vector<std::vector<double>>* temporaryMatrix = getMatrix();
+    std::vector<std::vector<double>>* temporaryMatrix = matrix_;
     std::string temporaryRow = "";
     unsigned rowsCounter = 0;
 
-    std::cout << "Give me an input! Your matrix has " << getRows() << " rows and " << getColumns() << " columns.\n";
+    std::cout << "Give me an input! Your matrix has " << rows_ << " rows and " << columns_ << " columns.\n";
 
-    while (rowsCounter < getRows()) {
+    while (rowsCounter < rows_) {
         std::getline(std::cin, temporaryRow);
         if (isTemporaryRowInputCorrect(temporaryRow)) {
             (*temporaryMatrix)[rowsCounter] = createVectorOfIntsFromTemporaryRowInput(temporaryRow);
             rowsCounter++;
         }
         else {
-            std::cout << "Wrong input. Matrix size [" << getRows() << "x" << getColumns() << "]. Please try again!\n";
+            std::cout << "Wrong input. Matrix size [" << rows_ << "x" << columns_ << "]. Please try again!\n";
         }
     }
 }
@@ -86,7 +86,7 @@ bool Matrix::isInputValuesEqualToColumnsSize(std::string temporaryRow)
         valuesCounter++;
     }
     bool isEqual = true;
-    if (valuesCounter > getColumns() || valuesCounter < getColumns()) {
+    if (valuesCounter > columns_ || valuesCounter < columns_) {
         isEqual = false;
     }
     return isEqual;
@@ -123,7 +123,7 @@ std::vector<double> Matrix::createVectorOfIntsFromTemporaryRowInput(std::string 
 
 void Matrix::printMatrix()
 {
-    std::for_each(getMatrix()->begin(), getMatrix()->end(), [](std::vector<double>& everyRow) {
+    std::for_each(matrix_->begin(), matrix_->end(), [](std::vector<double>& everyRow) {
         std::for_each(everyRow.begin(), everyRow.end(), [](double everyRowElement) {
             std::cout << std::right << std::setw(10) << everyRowElement << "| ";
         });

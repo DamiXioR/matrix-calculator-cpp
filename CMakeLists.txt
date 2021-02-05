@@ -46,6 +46,7 @@ set(FLAGS
     -Werror
     -Wconversion
     -Wpedantic
+    -g
 )
 
 #HEADERS PATH

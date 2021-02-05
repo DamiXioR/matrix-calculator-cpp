@@ -44,7 +44,6 @@ void Matrix::createEmptyMatrix()
 
 void Matrix::setMatrixValues()
 {
-    std::vector<std::vector<double>>* temporaryMatrix = matrix_;
     std::string temporaryRow = "";
     unsigned rowsCounter = 0;
 
@@ -53,7 +52,7 @@ void Matrix::setMatrixValues()
     while (rowsCounter < rows_) {
         std::getline(std::cin, temporaryRow);
         if (isTemporaryRowInputCorrect(temporaryRow)) {
-            (*temporaryMatrix)[rowsCounter] = createVectorOfIntsFromTemporaryRowInput(temporaryRow);
+            (*matrix_)[rowsCounter] = createVectorOfIntsFromTemporaryRowInput(temporaryRow);
             rowsCounter++;
         }
         else {

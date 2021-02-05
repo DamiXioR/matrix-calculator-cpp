@@ -9,7 +9,7 @@ public:
     MatrixManager();
     ~MatrixManager();
     bool addNewMatrix(char key, Matrix newMatrix);
-    Matrix addTwoMatrixes(char firstMatrixKey, char secondMatrixKey);
+    Matrix* addTwoMatrixes(char firstMatrixKey, char secondMatrixKey);
     std::map<char, Matrix>* getMatrixHolder() const
     {
         return matrixHolder_;

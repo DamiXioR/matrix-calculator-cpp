@@ -18,9 +18,9 @@ bool MatrixManager::addNewMatrix(char key, Matrix newMatrix)
     return checkIfInserted.second;
 }
 
-Matrix MatrixManager::addTwoMatrixes(char firstMatrixKey, char secondMatrixKey)
+Matrix* MatrixManager::addTwoMatrixes(char firstMatrixKey, char secondMatrixKey)
 {
-    Matrix result = Matrix();
+    Matrix* result = new Matrix();
     if (getMatrixHolder()->size() > 1) {
         auto firstMatrixIterator = getMatrixHolder()->find(firstMatrixKey);
         auto secondMatrixIterator = getMatrixHolder()->find(secondMatrixKey);
@@ -33,7 +33,7 @@ Matrix MatrixManager::addTwoMatrixes(char firstMatrixKey, char secondMatrixKey)
             bool areColumnsEqual = firstMatrixIterator->second.getColumns() == secondMatrixIterator->second.getColumns();
 
             if (areRowsEqual && areColumnsEqual) {
-                std::vector<std::vector<double>>* thirdMatrix = result.getMatrix();
+                std::vector<std::vector<double>>* thirdMatrix = result->getMatrix();
 
                 std::transform(firstMatrix.begin(), firstMatrix.end(), secondMatrix.begin(), std::back_inserter(*thirdMatrix),
                                [](std::vector<double> firstVector, std::vector<double> secondVector) {

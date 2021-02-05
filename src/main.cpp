@@ -16,12 +16,13 @@ int main(){
     mManager->addNewMatrix('a', *matrix);
     mManager->addNewMatrix('b',*matrixB);
 
-    Matrix matrixC = mManager->addTwoMatrixes('a','b');
-    matrixC.printMatrix();
+    Matrix* matrixC = mManager->addTwoMatrixes('a','b');
+    matrixC->printMatrix();
 
     delete mManager;
     delete matrix;
     delete matrixB;
+    delete matrixC;
     
     return 0;
 }

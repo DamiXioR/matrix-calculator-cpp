@@ -61,9 +61,19 @@ void Matrix::setMatrixValues()
     }
 }
 
-void Matrix::swapMatrix(std::vector<std::vector<double>>* anotherMatrix)
+bool Matrix::loadExternalMatrix(std::vector<std::vector<double>>* anotherMatrix)
 {
+    bool isCorrect = true;
     *matrix_ = *anotherMatrix;
+    rows_ = matrix_->size();
+
+    columns_ = matrix_->front().size();
+    for_each(matrix_->begin(), matrix_->end(), [this, &isCorrect](std::vector<double> everyRow){
+        if(columns_ != everyRow.size()){
+            isCorrect = false;
+        }
+    });
+    return isCorrect;
 }
 
 bool Matrix::isTemporaryRowInputCorrect(std::string temporaryRow)

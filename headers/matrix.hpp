@@ -11,7 +11,7 @@ public:
 
     void createEmptyMatrix();
     void setMatrixValues();
-    void swapMatrix(std::vector<std::vector<double>>* anotherMatrix);
+    bool loadExternalMatrix(std::vector<std::vector<double>>* anotherMatrix);
     bool isTemporaryRowInputCorrect(std::string temporaryRow);
     bool isInputValuesEqualToColumnsSize(std::string temporaryRow);
     bool isInputValuesConsistsDigits(std::string temporaryRow);

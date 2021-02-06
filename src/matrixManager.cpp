@@ -21,11 +21,11 @@ bool MatrixManager::addNewMatrix(char key, Matrix* newMatrix)
 Matrix* MatrixManager::addTwoMatrixes(char firstMatrixKey, char secondMatrixKey)
 {
     Matrix* result = new Matrix();
-    if (getMatrixHolder()->size() > 1) {
-        auto firstMatrixIterator = getMatrixHolder()->find(firstMatrixKey);
-        auto secondMatrixIterator = getMatrixHolder()->find(secondMatrixKey);
+    if (matrixHolder_->size() > 1) {
+        auto firstMatrixIterator = matrixHolder_->find(firstMatrixKey);
+        auto secondMatrixIterator = matrixHolder_->find(secondMatrixKey);
 
-        if (firstMatrixIterator != getMatrixHolder()->end() && secondMatrixIterator != getMatrixHolder()->end()) {
+        if (firstMatrixIterator != matrixHolder_->end() && secondMatrixIterator != matrixHolder_->end()) {
             std::vector<std::vector<double>> firstMatrix = firstMatrixIterator->second.getMatrix();
             std::vector<std::vector<double>> secondMatrix = secondMatrixIterator->second.getMatrix();
 

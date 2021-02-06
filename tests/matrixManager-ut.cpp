@@ -25,10 +25,16 @@ public:
         {-2, -1, -1},
     };
 
-    std::vector<std::vector<double>>* cMatrixContent = new std::vector<std::vector<double>>{
+    std::vector<std::vector<double>>* cMatrixContentSumAB = new std::vector<std::vector<double>>{
         {5, 6, 7},
         {-5, 26, 12},
         {0, 0, 1},
+    };
+
+    std::vector<std::vector<double>>* dMatrixContentSubstractAB = new std::vector<std::vector<double>>{
+        {-3, -2, -1},
+        {25, -14, -10},
+        {4, 2, 3},
     };
 
     ~MatrixManagerTest()
@@ -39,7 +45,8 @@ public:
         delete thirdMatrix;
         delete aMatrixContent;
         delete bMatrixContent;
-        delete cMatrixContent;
+        delete cMatrixContentSumAB;
+        delete dMatrixContentSubstractAB;
     }
 };
 
@@ -69,5 +76,22 @@ TEST_F(MatrixManagerTest, ShouldAddTwoMatrixesAndReturnMatrixConsistSum)
 
     thirdMatrix = matrixManager->addTwoMatrixes(a, b);
 
-    EXPECT_EQ(thirdMatrix->getMatrix(), *cMatrixContent);
+    EXPECT_EQ(thirdMatrix->getMatrix(), *cMatrixContentSumAB);
+}
+
+TEST_F(MatrixManagerTest, ShouldSubstractTwoMatrixesAndReturnMatrixConsistSubstract)
+{
+    matrixManager = new MatrixManager();
+    firstMatrix = new Matrix(3, 3);
+    secondMatrix = new Matrix(3, 3);
+
+    firstMatrix->loadExternalMatrix(aMatrixContent);
+    secondMatrix->loadExternalMatrix(bMatrixContent);
+
+    matrixManager->addNewMatrix(a, firstMatrix);
+    matrixManager->addNewMatrix(b, secondMatrix);
+
+    thirdMatrix = matrixManager->substractTwoMatrixes(a, b);
+
+    EXPECT_EQ(thirdMatrix->getMatrix(), *dMatrixContentSubstractAB);
 }

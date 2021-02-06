@@ -61,6 +61,11 @@ void Matrix::setMatrixValues()
     }
 }
 
+void Matrix::swapMatrix(std::vector<std::vector<double>>* anotherMatrix)
+{
+    *matrix_ = *anotherMatrix;
+}
+
 bool Matrix::isTemporaryRowInputCorrect(std::string temporaryRow)
 {
     bool isCorrect = true;

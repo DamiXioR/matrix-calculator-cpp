@@ -10,6 +10,9 @@ public:
     Matrix* secondMatrix = nullptr;
     Matrix* thirdMatrix = nullptr;
 
+    char a = 'a';
+    char b = 'b';
+
     std::vector<std::vector<double>>* aMatrixContent = new std::vector<std::vector<double>>{
         {1, 2, 3},
         {10, 6, 1},
@@ -25,7 +28,7 @@ public:
     std::vector<std::vector<double>>* cMatrixContent = new std::vector<std::vector<double>>{
         {5, 6, 7},
         {-5, 26, 12},
-        {0, 2, 1},
+        {0, 0, 1},
     };
 
     ~MatrixManagerTest()
@@ -57,20 +60,14 @@ TEST_F(MatrixManagerTest, ShouldAddTwoMatrixesAndReturnMatrixConsistSum)
     matrixManager = new MatrixManager();
     firstMatrix = new Matrix(3, 3);
     secondMatrix = new Matrix(3, 3);
-    thirdMatrix = new Matrix();
-    char a = 'a';
-    char b = 'b';
 
-    [[maybe_unused]] auto extractedfirstMatrix = firstMatrix->getMatrix();
-    [[maybe_unused]] auto extractedsecondMatrix = secondMatrix->getMatrix();
+    firstMatrix->swapMatrix(aMatrixContent);
+    secondMatrix->swapMatrix(bMatrixContent);
 
-    extractedfirstMatrix = aMatrixContent;
-    extractedsecondMatrix = bMatrixContent;
+    matrixManager->addNewMatrix(a, firstMatrix);
+    matrixManager->addNewMatrix(b, secondMatrix);
 
-    delete thirdMatrix;
     thirdMatrix = matrixManager->addTwoMatrixes(a, b);
-    auto extractedThirdMatrix = thirdMatrix->getMatrix();
 
-    EXPECT_EQ(*extractedThirdMatrix, *cMatrixContent);
-
+    EXPECT_EQ(thirdMatrix->getMatrix(), *cMatrixContent);
 }

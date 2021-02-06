@@ -72,15 +72,15 @@ public:
 TEST_F(MatrixTest, ShouldCreateMatrixWithSpecifiedNumsOfRowsAndColumns)
 {
     testMatrix = new Matrix(testRows5, testColumns7);
-    EXPECT_EQ(testMatrix->getMatrix()->size(), testRows5);
-    for (auto& everyRow : *testMatrix->getMatrix()) {
+    EXPECT_EQ(testMatrix->getMatrix().size(), testRows5);
+    for (auto& everyRow : testMatrix->getMatrix()) {
         EXPECT_EQ(everyRow.size(), testColumns7);
     }
     delete testMatrix;
 
     testMatrix = new Matrix(testRows10, testColumns1);
-    EXPECT_EQ(testMatrix->getMatrix()->size(), testRows10);
-    for (auto& everyRow : *testMatrix->getMatrix()) {
+    EXPECT_EQ(testMatrix->getMatrix().size(), testRows10);
+    for (auto& everyRow : testMatrix->getMatrix()) {
         EXPECT_EQ(everyRow.size(), testColumns1);
     }
 }

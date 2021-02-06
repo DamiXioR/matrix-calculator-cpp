@@ -11,6 +11,7 @@ public:
 
     void createEmptyMatrix();
     void setMatrixValues();
+    void swapMatrix(std::vector<std::vector<double>>* anotherMatrix);
     bool isTemporaryRowInputCorrect(std::string temporaryRow);
     bool isInputValuesEqualToColumnsSize(std::string temporaryRow);
     bool isInputValuesConsistsDigits(std::string temporaryRow);
@@ -19,9 +20,9 @@ public:
 
     void printMatrix();
 
-    std::vector<std::vector<double>>* getMatrix() const
+    std::vector<std::vector<double>>& getMatrix() const
     {
-        return matrix_;
+        return *matrix_;
     }
     std::size_t getRows() const
     {

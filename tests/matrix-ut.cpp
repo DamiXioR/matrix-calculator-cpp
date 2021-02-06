@@ -8,6 +8,7 @@ class MatrixTest : public ::testing::Test {
 public:
     ~MatrixTest()
     {
+        delete newMatrixContent;
         delete testMatrix;
     }
 
@@ -19,6 +20,8 @@ public:
     const unsigned testColumns7 = 7;
     const unsigned testRows10 = 10;
     const unsigned testColumns1 = 1;
+    const unsigned testRows3 = 3;
+    const unsigned testColumns3 = 3;
 
     //Row inputs
 
@@ -64,6 +67,12 @@ public:
         {"                    1 2 3 4 5 @$!"}};
 
     std::string emptyRow = "         ";
+
+    std::vector<std::vector<double>>* newMatrixContent = new std::vector<std::vector<double>>{
+        {1, 2, 3},
+        {10, 6, 1},
+        {2, 1, 2},
+    };
 };
 
 // IMPORTANT! testMatrix freed in MatrixTest dtor, you haven't delete it at the end of every test case
@@ -208,4 +217,18 @@ TEST_F(MatrixTest, ShouldReturnVectorOfIntsFromTemporaryRowInput)
         EXPECT_EQ(testVectorOfInts, everyVectorOfInts);
         counter++;
     }
+}
+
+TEST_F(MatrixTest, ShouldLoadMatrixContent)
+{
+    testMatrix = new Matrix(testRows5, testColumns7);
+    Matrix* anotherMatrix = new Matrix();
+
+    anotherMatrix->loadExternalMatrix(newMatrixContent);
+
+    EXPECT_EQ(anotherMatrix->getMatrix(), *newMatrixContent);
+    EXPECT_EQ(anotherMatrix->getRows(), testRows3);
+    EXPECT_EQ(anotherMatrix->getColumns(), testColumns3);
+
+    delete anotherMatrix;
 }

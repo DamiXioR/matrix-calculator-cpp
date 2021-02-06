@@ -61,8 +61,8 @@ TEST_F(MatrixManagerTest, ShouldAddTwoMatrixesAndReturnMatrixConsistSum)
     firstMatrix = new Matrix(3, 3);
     secondMatrix = new Matrix(3, 3);
 
-    firstMatrix->swapMatrix(aMatrixContent);
-    secondMatrix->swapMatrix(bMatrixContent);
+    firstMatrix->loadExternalMatrix(aMatrixContent);
+    secondMatrix->loadExternalMatrix(bMatrixContent);
 
     matrixManager->addNewMatrix(a, firstMatrix);
     matrixManager->addNewMatrix(b, secondMatrix);

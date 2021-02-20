@@ -10,6 +10,7 @@ Matrix::Matrix(unsigned rows, unsigned columns)
     : rows_(rows), columns_(columns)
 {
     createEmptyMatrix();
+    createMatrixWithAccessByColumns();
 }
 
 Matrix::Matrix(const Matrix& anotherMatrix)
@@ -18,23 +19,27 @@ Matrix::Matrix(const Matrix& anotherMatrix)
     columns_ = anotherMatrix.columns_;
     matrix_ = new std::vector<std::vector<double>>(rows_);
     *matrix_ = *(anotherMatrix.matrix_);
+    matrixWithAccessByColumns_ = new std::vector<std::vector<double>>(columns_);
+    *matrixWithAccessByColumns_ = *(anotherMatrix.matrixWithAccessByColumns_);
 }
 
 Matrix& Matrix::operator=(Matrix& anotherMatrix)
 {
     rows_ = anotherMatrix.rows_;
     columns_ = anotherMatrix.columns_;
+    delete matrix_;
     matrix_ = new std::vector<std::vector<double>>(rows_);
     *matrix_ = *(anotherMatrix.matrix_);
+    delete matrixWithAccessByColumns_;
+    matrixWithAccessByColumns_ = new std::vector<std::vector<double>>(columns_);
+    *matrixWithAccessByColumns_ = *(anotherMatrix.matrixWithAccessByColumns_);
     return *this;
 }
 
 Matrix::~Matrix()
 {
     delete matrix_;
-    if (matrixWithAccessByColumns_ != nullptr) {
-        delete matrixWithAccessByColumns_;
-    }
+    delete matrixWithAccessByColumns_;
 }
 
 void Matrix::createEmptyMatrix()
@@ -47,6 +52,9 @@ void Matrix::createEmptyMatrix()
 
 void Matrix::createMatrixWithAccessByColumns()
 {
+    if (matrixWithAccessByColumns_ != nullptr) {
+        delete matrixWithAccessByColumns_;
+    }
     matrixWithAccessByColumns_ = new std::vector<std::vector<double>>(columns_);
 
     std::for_each(matrix_->begin(), matrix_->end(),
@@ -75,6 +83,7 @@ void Matrix::setMatrixValues()
             std::cout << "Wrong input. Matrix size [" << rows_ << "x" << columns_ << "]. Please try again!\n";
         }
     }
+    createMatrixWithAccessByColumns();
 }
 
 bool Matrix::loadExternalMatrix(std::vector<std::vector<double>>* anotherMatrix)
@@ -89,6 +98,9 @@ bool Matrix::loadExternalMatrix(std::vector<std::vector<double>>* anotherMatrix)
             isCorrect = false;
         }
     });
+    if (isCorrect) {
+        createMatrixWithAccessByColumns();
+    }
     return isCorrect;
 }
 

@@ -241,7 +241,31 @@ TEST_F(MatrixTest, ShouldCreateMatrixWithAccessByColumns)
 {
     testMatrix = new Matrix(testRows5, testColumns7);
     testMatrix->loadExternalMatrix(newMatrixContent);
-    testMatrix->createMatrixWithAccessByColumns();
 
     EXPECT_EQ(testMatrix->getMatrixWithAccessByColumns(), *newMatrixContentWithAccessByColumns);
+}
+
+TEST_F(MatrixTest, ShouldCopyMatrixWithCopyCtor)
+{
+    Matrix firstMatrix = Matrix(testRows5, testColumns7);
+    firstMatrix.loadExternalMatrix(newMatrixContent);
+    Matrix secondMatrix = Matrix(firstMatrix);
+
+    EXPECT_EQ(firstMatrix.getMatrix(), *newMatrixContent);
+    EXPECT_EQ(firstMatrix.getMatrixWithAccessByColumns(), *newMatrixContentWithAccessByColumns);
+    EXPECT_EQ(secondMatrix.getMatrix(), *newMatrixContent);
+    EXPECT_EQ(secondMatrix.getMatrixWithAccessByColumns(), *newMatrixContentWithAccessByColumns);
+}
+
+TEST_F(MatrixTest, ShouldCopyMatrixWithCopyAssignmentOperator)
+{
+    Matrix firstMatrix = Matrix(testRows5, testColumns7);
+    firstMatrix.loadExternalMatrix(newMatrixContent);
+    Matrix secondMatrix;
+    secondMatrix = firstMatrix;
+
+    EXPECT_EQ(firstMatrix.getMatrix(), *newMatrixContent);
+    EXPECT_EQ(firstMatrix.getMatrixWithAccessByColumns(), *newMatrixContentWithAccessByColumns);
+    EXPECT_EQ(secondMatrix.getMatrix(), *newMatrixContent);
+    EXPECT_EQ(secondMatrix.getMatrixWithAccessByColumns(), *newMatrixContentWithAccessByColumns);
 }

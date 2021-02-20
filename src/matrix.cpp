@@ -32,6 +32,9 @@ Matrix& Matrix::operator=(Matrix& anotherMatrix)
 Matrix::~Matrix()
 {
     delete matrix_;
+    if (matrixWithAccessByColumns_ != nullptr) {
+        delete matrixWithAccessByColumns_;
+    }
 }
 
 void Matrix::createEmptyMatrix()
@@ -40,6 +43,19 @@ void Matrix::createEmptyMatrix()
     std::for_each(matrix_->begin(), matrix_->end(), [this](std::vector<double>& everyRow) {
         everyRow.resize(columns_);
     });
+}
+
+void Matrix::createMatrixWithAccessByColumns()
+{
+    matrixWithAccessByColumns_ = new std::vector<std::vector<double>>(columns_);
+
+    std::for_each(matrix_->begin(), matrix_->end(),
+                  [this](std::vector<double> sourceMatrixRow) {
+                      unsigned counter = 0;
+                      for (auto& value : sourceMatrixRow) {
+                          (*matrixWithAccessByColumns_)[counter++].push_back(value);
+                      }
+                  });
 }
 
 void Matrix::setMatrixValues()
@@ -68,8 +84,8 @@ bool Matrix::loadExternalMatrix(std::vector<std::vector<double>>* anotherMatrix)
     rows_ = matrix_->size();
 
     columns_ = matrix_->front().size();
-    for_each(matrix_->begin(), matrix_->end(), [this, &isCorrect](std::vector<double> everyRow){
-        if(columns_ != everyRow.size()){
+    for_each(matrix_->begin(), matrix_->end(), [this, &isCorrect](std::vector<double> everyRow) {
+        if (columns_ != everyRow.size()) {
             isCorrect = false;
         }
     });

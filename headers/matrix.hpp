@@ -10,6 +10,7 @@ public:
     ~Matrix();
 
     void createEmptyMatrix();
+    void createMatrixWithAccessByColumns();
     void setMatrixValues();
     bool loadExternalMatrix(std::vector<std::vector<double>>* anotherMatrix);
     bool isTemporaryRowInputCorrect(std::string temporaryRow);
@@ -24,6 +25,12 @@ public:
     {
         return *matrix_;
     }
+
+    std::vector<std::vector<double>>& getMatrixWithAccessByColumns() const
+    {
+        return *matrixWithAccessByColumns_;
+    }
+
     std::size_t getRows() const
     {
         return rows_;
@@ -36,6 +43,7 @@ public:
 
 private:
     std::vector<std::vector<double>>* matrix_{};
+    std::vector<std::vector<double>>* matrixWithAccessByColumns_{};
     std::size_t rows_{};
     std::size_t columns_{};
 };

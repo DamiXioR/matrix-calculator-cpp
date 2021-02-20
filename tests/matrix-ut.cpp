@@ -9,6 +9,7 @@ public:
     ~MatrixTest()
     {
         delete newMatrixContent;
+        delete newMatrixContentWithAccessByColumns;
         delete testMatrix;
     }
 
@@ -72,6 +73,12 @@ public:
         {1, 2, 3},
         {10, 6, 1},
         {2, 1, 2},
+    };
+
+    std::vector<std::vector<double>>* newMatrixContentWithAccessByColumns = new std::vector<std::vector<double>>{
+        {1, 10, 2},
+        {2, 6, 1},
+        {3, 1, 2},
     };
 };
 
@@ -231,4 +238,13 @@ TEST_F(MatrixTest, ShouldLoadMatrixContent)
     EXPECT_EQ(anotherMatrix->getColumns(), testColumns3);
 
     delete anotherMatrix;
+}
+
+TEST_F(MatrixTest, ShouldCreateMatrixWithAccessByColumns)
+{
+    testMatrix = new Matrix(testRows5, testColumns7);
+    testMatrix->loadExternalMatrix(newMatrixContent);
+    testMatrix->createMatrixWithAccessByColumns();
+
+    EXPECT_EQ(testMatrix->getMatrixWithAccessByColumns(), *newMatrixContentWithAccessByColumns);
 }

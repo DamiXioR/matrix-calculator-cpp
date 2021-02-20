@@ -228,16 +228,13 @@ TEST_F(MatrixTest, ShouldReturnVectorOfIntsFromTemporaryRowInput)
 
 TEST_F(MatrixTest, ShouldLoadMatrixContent)
 {
-    testMatrix = new Matrix(testRows5, testColumns7);
-    Matrix* anotherMatrix = new Matrix();
+    testMatrix = new Matrix();
 
-    anotherMatrix->loadExternalMatrix(newMatrixContent);
+    testMatrix->loadExternalMatrix(newMatrixContent);
 
-    EXPECT_EQ(anotherMatrix->getMatrix(), *newMatrixContent);
-    EXPECT_EQ(anotherMatrix->getRows(), testRows3);
-    EXPECT_EQ(anotherMatrix->getColumns(), testColumns3);
-
-    delete anotherMatrix;
+    EXPECT_EQ(testMatrix->getMatrix(), *newMatrixContent);
+    EXPECT_EQ(testMatrix->getRows(), testRows3);
+    EXPECT_EQ(testMatrix->getColumns(), testColumns3);
 }
 
 TEST_F(MatrixTest, ShouldCreateMatrixWithAccessByColumns)

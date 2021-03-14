@@ -13,6 +13,9 @@ public:
     char a = 'a';
     char b = 'b';
 
+    const int threeLiteral = 3;
+    const int sixLiteral = 6;
+
     std::vector<std::vector<double>>* aMatrixContent = new std::vector<std::vector<double>>{
         {1, 2, 3},
         {10, 6, 1},
@@ -37,6 +40,18 @@ public:
         {4, 2, 3},
     };
 
+    std::vector<std::vector<double>>* eMatrixContentMultiplyAMatrixByThree = new std::vector<std::vector<double>>{
+        {3, 6, 9},
+        {30, 18, 3},
+        {6, 3, 6},
+    };
+
+    std::vector<std::vector<double>>* fMatrixContentMultiplyBMatrixBySix = new std::vector<std::vector<double>>{
+        {24, 24, 24},
+        {-90, 120, 66},
+        {-12, -6, -6},
+    };
+
     ~MatrixManagerTest()
     {
         delete matrixManager;
@@ -47,6 +62,8 @@ public:
         delete bMatrixContent;
         delete cMatrixContentSumAB;
         delete dMatrixContentSubstractAB;
+        delete eMatrixContentMultiplyAMatrixByThree;
+        delete fMatrixContentMultiplyBMatrixBySix;
     }
 };
 
@@ -95,3 +112,29 @@ TEST_F(MatrixManagerTest, ShouldSubstractTwoMatrixesAndReturnMatrixConsistSubstr
 
     EXPECT_EQ(thirdMatrix->getMatrix(), *dMatrixContentSubstractAB);
 }
+
+TEST_F(MatrixManagerTest, ShouldMultiplyMatrixByNumberAndReturnMatrixWithResult)
+{
+    matrixManager = new MatrixManager();
+    firstMatrix = new Matrix(3, 3);
+    secondMatrix = new Matrix(3, 3);
+
+    firstMatrix->loadExternalMatrix(aMatrixContent);
+    secondMatrix->loadExternalMatrix(bMatrixContent);
+
+    matrixManager->addNewMatrix(a, firstMatrix);
+    matrixManager->addNewMatrix(b, secondMatrix);
+
+    thirdMatrix = matrixManager->multiplyMatrixByNumber(a, threeLiteral);
+
+    EXPECT_EQ(thirdMatrix->getMatrix(), *eMatrixContentMultiplyAMatrixByThree);
+
+    delete thirdMatrix;
+
+    thirdMatrix = matrixManager->multiplyMatrixByNumber(b, sixLiteral);
+
+    EXPECT_EQ(thirdMatrix->getMatrix(), *fMatrixContentMultiplyBMatrixBySix);
+    
+}
+
+

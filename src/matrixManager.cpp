@@ -85,3 +85,26 @@ Matrix* MatrixManager::substractTwoMatrixes(char firstMatrixKey, char secondMatr
     }
     return result;
 }
+
+Matrix* MatrixManager::multiplyMatrixByNumber(char firstMatrixKey, double factor)
+{
+    Matrix* result = new Matrix();
+    if (matrixHolder_->size() > 1) {
+        auto firstMatrixIterator = matrixHolder_->find(firstMatrixKey);
+        if (firstMatrixIterator != matrixHolder_->end()) {
+            std::vector<std::vector<double>>* firstMatrix = &firstMatrixIterator->second.getMatrix();
+            std::vector<std::vector<double>>* resultMatrix = &result->getMatrix();
+
+            std::transform(firstMatrix->begin(), firstMatrix->end(), std::back_inserter(*resultMatrix),
+                           [factor](std::vector<double> firstVector) {
+                               std::vector<double> everyRow;
+                               std::transform(firstVector.begin(), firstVector.end(), std::back_inserter(everyRow),
+                                              [factor](double everyLiteral) {
+                                                return everyLiteral * factor;
+                                              });
+                                return everyRow;
+                           });
+        }
+    }
+    return result;
+}

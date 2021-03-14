@@ -89,7 +89,7 @@ Matrix* MatrixManager::substractTwoMatrixes(char firstMatrixKey, char secondMatr
 Matrix* MatrixManager::multiplyMatrixByNumber(char firstMatrixKey, double factor)
 {
     Matrix* result = new Matrix();
-    if (matrixHolder_->size() > 1) {
+    if (!matrixHolder_->empty()) {
         auto firstMatrixIterator = matrixHolder_->find(firstMatrixKey);
         if (firstMatrixIterator != matrixHolder_->end()) {
             std::vector<std::vector<double>>* firstMatrix = &firstMatrixIterator->second.getMatrix();

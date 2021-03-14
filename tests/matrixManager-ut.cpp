@@ -52,6 +52,12 @@ public:
         {-12, -6, -6},
     };
 
+    std::vector<std::vector<double>>* gMatrixContentMultiplyAMatrixByBMatrix = new std::vector<std::vector<double>>{
+        {-32, 41, 23},
+        {-52, 159, 105},
+        {-11, 26, 17},
+    };
+
     ~MatrixManagerTest()
     {
         delete matrixManager;
@@ -64,6 +70,7 @@ public:
         delete dMatrixContentSubstractAB;
         delete eMatrixContentMultiplyAMatrixByThree;
         delete fMatrixContentMultiplyBMatrixBySix;
+        delete gMatrixContentMultiplyAMatrixByBMatrix;
     }
 };
 
@@ -134,7 +141,45 @@ TEST_F(MatrixManagerTest, ShouldMultiplyMatrixByNumberAndReturnMatrixWithResult)
     thirdMatrix = matrixManager->multiplyMatrixByNumber(b, sixLiteral);
 
     EXPECT_EQ(thirdMatrix->getMatrix(), *fMatrixContentMultiplyBMatrixBySix);
+}
+
+TEST_F(MatrixManagerTest, ShouldMultiplyMatrixByMatrixAndReturnMatrixWithResult)
+{
+    matrixManager = new MatrixManager();
+    firstMatrix = new Matrix(3, 3);
+    secondMatrix = new Matrix(3, 3);
+
+    firstMatrix->loadExternalMatrix(aMatrixContent);
+    secondMatrix->loadExternalMatrix(bMatrixContent);
+
+    matrixManager->addNewMatrix(a, firstMatrix);
+    matrixManager->addNewMatrix(b, secondMatrix);
+
+    thirdMatrix = matrixManager->multiplyMatrixByNumber(a, threeLiteral);
+
+    EXPECT_EQ(thirdMatrix->getMatrix(), *eMatrixContentMultiplyAMatrixByThree);
+
+    delete thirdMatrix;
+
+    thirdMatrix = matrixManager->multiplyMatrixByNumber(b, sixLiteral);
+
+    EXPECT_EQ(thirdMatrix->getMatrix(), *fMatrixContentMultiplyBMatrixBySix);
     
 }
 
+TEST_F(MatrixManagerTest, ShouldMultiplyAMatrixByBMatrixAndReturnMatrixWithResult)
+{
+    matrixManager = new MatrixManager();
+    firstMatrix = new Matrix(3, 3);
+    secondMatrix = new Matrix(3, 3);
 
+    firstMatrix->loadExternalMatrix(aMatrixContent);
+    secondMatrix->loadExternalMatrix(bMatrixContent);
+
+    matrixManager->addNewMatrix(a, firstMatrix);
+    matrixManager->addNewMatrix(b, secondMatrix);
+
+    thirdMatrix = matrixManager->multiplyMatrixByMatrix(a, b);
+
+    EXPECT_EQ(thirdMatrix->getMatrix(), *gMatrixContentMultiplyAMatrixByBMatrix);
+}
